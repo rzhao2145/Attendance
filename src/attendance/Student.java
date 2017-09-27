@@ -1,75 +1,52 @@
 package attendance;
 
 public class Student implements Attendee{
-	private String first;
-	private String last;
+	private String firstName;
+	private String lastName;
 	private boolean isHere;
 	private String report;
-	private String report2;
+	
 	
 	public Student(String firstName, String lastName) {
-		this.first = firstName;
-		this.last = lastName;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		report = "";
 		isHere = false;
 	}
 	public boolean isPresent() {
-		if(isHere == true) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return isHere;
 		
 	}
 	public void setPresent(boolean present) {
-		isHere = present;
+		this.isHere = present;
 	}
 	public String getFirstName() {
-		return this.first;
+		return firstName;
 	}
 	public String getLastName() {
-		return this.last;
+		return lastName;
 	}
 	public boolean mathces(String first, String last) {
-		if(this.first.equals(first) && this.last.equals(last)) {
-			return true;
-		}
-		return false;
+		return first.toLowerCase().equals(firstName.toLowerCase()) && last.toLowerCase().equals(lastName.toLowerCase());
 	}
-	public boolean matches(String first) {
-		if(this.first.equals(first)) {
-			return true;
-		}
-		return false;
+	public boolean matches(String last) {
+		return last.toLowerCase().equals(lastName.toLowerCase());
 	}
 	public String getReportString() {
-		if(this.first.length() >= 20) {
-			report += this.first.substring(0,17) + "...";
-		} else {
-			report += this.first;
-			while(report.length() < 20) {
-				report += " ";
-			}
+		report += firstName;
+		while(report.length() < 20) {
+			report += " ";
 		}
-		
-		if(this.last.length() >= 20) {
-			report2 += this.last.substring(0,17) + "...";
-		} else {
-			report2 += this.first;
-			while(report2.length() < 20) {
-				report += " ";
-			}
-		}
-		report += report2;
+		report += lastName;
 		while(report.length() < 40) {
 			report += " ";
 		}
-		if(isHere == true) {
+		if(isHere) {
 			report += "PRESENT";
-		} else {
+		}
+		else {
 			report += "ABSENT";
 		}
-		System.out.println(report);
 		return report;
 	}
 }
